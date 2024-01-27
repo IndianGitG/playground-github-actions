@@ -22,3 +22,18 @@ jobs:
         git config --global user.email 'vishnuvardhan7965@gmail.com'
         git checkout -b release/v${{ github.event.inputs.version }}
         git push origin release/v${{ github.event.inputs.version }}
+    
+    - name: Trigger Release Creation Workflow
+      uses: actions/github-script@0.9.0
+      with:
+        script: |
+          github.repos.createDispatchEvent({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            event_type: 'create-release-event',
+            client_payload: {
+              version: '${{ github.event.inputs.version }}'
+              }
+            })
+        env:
+            GITHUB_TOKEN: ${{ secrets.PAT }}
