@@ -33,7 +33,7 @@ jobs:
             event_type: 'create-release-event',
             client_payload: {
               version: '${{ github.event.inputs.version }}'
-              }
-            })
+            }
+          })
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
