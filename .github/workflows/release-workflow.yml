@@ -16,5 +16,7 @@ jobs:
 
     - name: Create Release Branch
       run: |
-        git checkout -b release/v:${{ github.event.inputs.version }}
-        git push origin release/v:${{ github.event.inputs.version }}
+        git config --global user.name 'harsha'
+        git config --global user.email 'vishnuvardhan7965@gmail.com'
+        git checkout -b release/v${{ github.event.inputs.version }}
+        git push origin release/v${{ github.event.inputs.version }}
